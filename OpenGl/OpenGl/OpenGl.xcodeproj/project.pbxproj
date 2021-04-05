@@ -10,9 +10,12 @@
 		9F97FFE3261A1879001C2045 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F97FFE2261A1879001C2045 /* main.cpp */; };
 		9F97FFEC261A1882001C2045 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F97FFEB261A1882001C2045 /* OpenGL.framework */; };
 		9F97FFF0261A190F001C2045 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F97FFEF261A190F001C2045 /* libglfw.3.3.dylib */; };
-		9F97FFF1261A190F001C2045 /* libglfw.3.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9F97FFEF261A190F001C2045 /* libglfw.3.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9F97FFF4261A192F001C2045 /* libGLEW.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F97FFF3261A192F001C2045 /* libGLEW.2.2.0.dylib */; };
-		9F97FFF5261A192F001C2045 /* libGLEW.2.2.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9F97FFF3261A192F001C2045 /* libGLEW.2.2.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9FDCA1B6261B192B003F1B38 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDCA1B5261B192B003F1B38 /* libglfw.3.3.dylib */; };
+		9FDCA1B7261B192B003F1B38 /* libglfw.3.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9FDCA1B5261B192B003F1B38 /* libglfw.3.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9FDCA1BA261B1AA2003F1B38 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDCA1B5261B192B003F1B38 /* libglfw.3.3.dylib */; };
+		9FDCA1BC261B1AB2003F1B38 /* libGLEW.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDCA1BB261B1AB2003F1B38 /* libGLEW.2.2.0.dylib */; };
+		9FDCA1BD261B1AB2003F1B38 /* libGLEW.2.2.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9FDCA1BB261B1AB2003F1B38 /* libGLEW.2.2.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,8 +34,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9F97FFF1261A190F001C2045 /* libglfw.3.3.dylib in Embed Libraries */,
-				9F97FFF5261A192F001C2045 /* libGLEW.2.2.0.dylib in Embed Libraries */,
+				9FDCA1BD261B1AB2003F1B38 /* libGLEW.2.2.0.dylib in Embed Libraries */,
+				9FDCA1B7261B192B003F1B38 /* libglfw.3.3.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,6 +50,9 @@
 		9F97FFEE261A18C9001C2045 /* glew */ = {isa = PBXFileReference; lastKnownFileType = folder; name = glew; path = ../../../../../usr/local/Cellar/glew; sourceTree = "<group>"; };
 		9F97FFEF261A190F001C2045 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../../usr/local/Cellar/glfw/3.3.3/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
 		9F97FFF3261A192F001C2045 /* libGLEW.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.2.0.dylib; path = ../../../../../usr/local/Cellar/glew/2.2.0_1/lib/libGLEW.2.2.0.dylib; sourceTree = "<group>"; };
+		9FDCA1B5261B192B003F1B38 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../../../../../usr/local/Cellar/glfw/3.3.3/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
+		9FDCA1B9261B1A8C003F1B38 /* glew */ = {isa = PBXFileReference; lastKnownFileType = folder; name = glew; path = ../../../../../../../../usr/local/Cellar/glew; sourceTree = "<group>"; };
+		9FDCA1BB261B1AB2003F1B38 /* libGLEW.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.2.0.dylib; path = ../../../../../../../../usr/local/Cellar/glew/2.2.0_1/lib/libGLEW.2.2.0.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +60,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FDCA1B6261B192B003F1B38 /* libglfw.3.3.dylib in Frameworks */,
+				9FDCA1BC261B1AB2003F1B38 /* libGLEW.2.2.0.dylib in Frameworks */,
 				9F97FFF0261A190F001C2045 /* libglfw.3.3.dylib in Frameworks */,
 				9F97FFF4261A192F001C2045 /* libGLEW.2.2.0.dylib in Frameworks */,
+				9FDCA1BA261B1AA2003F1B38 /* libglfw.3.3.dylib in Frameworks */,
 				9F97FFEC261A1882001C2045 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,6 +100,9 @@
 		9F97FFEA261A1882001C2045 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9FDCA1BB261B1AB2003F1B38 /* libGLEW.2.2.0.dylib */,
+				9FDCA1B9261B1A8C003F1B38 /* glew */,
+				9FDCA1B5261B192B003F1B38 /* libglfw.3.3.dylib */,
 				9F97FFF3261A192F001C2045 /* libGLEW.2.2.0.dylib */,
 				9F97FFEF261A190F001C2045 /* libglfw.3.3.dylib */,
 				9F97FFEE261A18C9001C2045 /* glew */,
