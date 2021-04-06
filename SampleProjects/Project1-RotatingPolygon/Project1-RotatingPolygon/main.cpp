@@ -3,8 +3,12 @@
 #include <GLFW/glfw3.h>
 #include <fstream>
 
-const unsigned int window_width = 512;
-const unsigned int window_height = 512;
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+#include "imgui.h"
+
+const unsigned int window_width = 600;
+const unsigned int window_height = 600;
 const char * window_title = "OpenGl";
 
 GLFWwindow* window;
@@ -149,7 +153,7 @@ void setVerticesForNGonWithRadius(float* vertices , int n , float radius , Color
 void loadVertexArrayObjectForNGon(int n , ColorData color , float rotation = 0.0f ){
     
     float vertices[(n+1)*6];
-    setVerticesForNGonWithRadius(vertices, n, 0.75f , color , rotation );
+    setVerticesForNGonWithRadius(vertices, n, 0.5f , color , rotation );
     
     // get proper indices of triangles for n-gon
     unsigned int indices[n * 3];
@@ -182,21 +186,6 @@ void loadVertexArrayObjectForNGon(int n , ColorData color , float rotation = 0.0
 
 int main() {
     
-    int vertexCnt = 0;
-    
-    while (vertexCnt < 3){
-        try {
-            std::cout << "Enter Vertex Count (n>=3) \n";
-            std::cin >> vertexCnt;
-        } catch (int x) {
-            std::cout << "error";
-        }
-        if (vertexCnt < 3){
-            std::cout << "vertex count must be at least 3\n";
-            
-        }
-    }
-        
     if (loadWindow() == -1)return -1;
     loadShaders();
     
@@ -206,16 +195,58 @@ int main() {
     
     float rotation = 0.0f;
     auto startTime = std::chrono::system_clock::now();
-    float rotationSpeed = M_PI / 4; // over seconds;
+    float rotationSpeed = 0.25f; // over seconds;
+    
+    
+    ImGui::CreateContext();
+    ImGui::StyleColorsDark();
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    const char * glsl_version = "#version 330";
+    ImGui_ImplOpenGL3_Init(glsl_version);
+    
+    int counter = 0;
+    
+    int vertexCnt = 3;
     
     glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
     do{
         glClear(GL_COLOR_BUFFER_BIT);
         glClearColor(0.1, 0.0, 0.15, 1);
         
+        // IMGUI SECTION BEGINS
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+        
+        ImGui::Begin("NGon-Master");                          // Create a window called "Hello, world!" and append into it.
+
+        ImGui::Text("You can edit ngon");               // Display some text (you can use a format strings too)
+        //ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
+        //ImGui::Checkbox("Another Window", &show_another_window);
+
+        ImGui::SliderInt("Vertex Count", &vertexCnt, 3, 50);
+        ImGui::SliderFloat("Rotation Speed (radian / per second)", &rotationSpeed, 0.0f, 5.0f);
+
+        //ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+        //ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
+        
+//        if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
+//            counter++;
+//        ImGui::SameLine();
+//        ImGui::Text("counter = %d", counter);
+
+        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+        ImGui::End();
+        
+        // IMGUI SECTION ENDS
+        
+        
+        
+        
+        
         auto time = std::chrono::system_clock::now();
         std::chrono::duration<double> elapsed_seconds = time-startTime;
-        float rotationInRadians = ( elapsed_seconds.count() * rotationSpeed );
+        float rotationInRadians = ( elapsed_seconds.count() * rotationSpeed * M_PI );
         startTime = time;
         rotation += rotationInRadians * 180.0f / M_PI;
             
@@ -234,6 +265,10 @@ int main() {
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 3 * (vertexCnt), GL_UNSIGNED_INT , 0);
     
+        
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
         
         glfwSwapBuffers(window);
         glfwPollEvents();
