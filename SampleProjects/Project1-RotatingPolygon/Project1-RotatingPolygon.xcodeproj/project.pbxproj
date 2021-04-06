@@ -31,6 +31,8 @@
 		9F688AC7261B3A4000C37B03 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		9F688AC9261B3A5600C37B03 /* libGLEW.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.2.0.dylib; path = ../../../../../../../../usr/local/Cellar/glew/2.2.0_1/lib/libGLEW.2.2.0.dylib; sourceTree = "<group>"; };
 		9F688ACC261B3A7500C37B03 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../../../../../usr/local/Cellar/glfw/3.3.3/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
+		9FF72DC5261B9C7900E88B50 /* VertexShader.shader */ = {isa = PBXFileReference; lastKnownFileType = text; path = VertexShader.shader; sourceTree = "<group>"; };
+		9FF72DC6261B9C8900E88B50 /* FragmentShader.shader */ = {isa = PBXFileReference; lastKnownFileType = text; path = FragmentShader.shader; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 		9F688ABD261B3A2C00C37B03 /* Project1-RotatingPolygon */ = {
 			isa = PBXGroup;
 			children = (
+				9FF72DC3261B9C4E00E88B50 /* res */,
 				9F688ABE261B3A2C00C37B03 /* main.cpp */,
 			);
 			path = "Project1-RotatingPolygon";
@@ -80,6 +83,23 @@
 				9F688AC7261B3A4000C37B03 /* OpenGL.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9FF72DC3261B9C4E00E88B50 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				9FF72DC4261B9C5300E88B50 /* shaders */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		9FF72DC4261B9C5300E88B50 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				9FF72DC5261B9C7900E88B50 /* VertexShader.shader */,
+				9FF72DC6261B9C8900E88B50 /* FragmentShader.shader */,
+			);
+			path = shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
