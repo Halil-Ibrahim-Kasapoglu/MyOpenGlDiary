@@ -150,10 +150,10 @@ void setVerticesForNGonWithRadius(float* vertices , int n , float radius , Color
     }
 }
 
-void loadVertexArrayObjectForNGon(int n , ColorData color , float rotation = 0.0f ){
+void loadVertexArrayObjectForNGon(int n , float radius , ColorData color , float rotation = 0.0f ){
     
     float vertices[(n+1)*6];
-    setVerticesForNGonWithRadius(vertices, n, 0.5f , color , rotation );
+    setVerticesForNGonWithRadius(vertices, n, radius , color , rotation );
     
     // get proper indices of triangles for n-gon
     unsigned int indices[n * 3];
@@ -195,7 +195,7 @@ int main() {
     
     float rotation = 0.0f;
     auto startTime = std::chrono::system_clock::now();
-    float rotationSpeed = 0.25f; // over seconds;
+    float rotationSpeed = 0.0f; // over seconds;
     
     
     ImGui::CreateContext();
@@ -204,9 +204,12 @@ int main() {
     const char * glsl_version = "#version 330";
     ImGui_ImplOpenGL3_Init(glsl_version);
     
-    int counter = 0;
+    //int counter = 0;
     
     int vertexCnt = 3;
+    float colorSpeed = 1.0f;
+    float colorTime = 0.0f;
+    float radius = 0.5f;
     
     glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
     do{
@@ -225,7 +228,9 @@ int main() {
         //ImGui::Checkbox("Another Window", &show_another_window);
 
         ImGui::SliderInt("Vertex Count", &vertexCnt, 3, 50);
-        ImGui::SliderFloat("Rotation Speed (radian / per second)", &rotationSpeed, 0.0f, 5.0f);
+        ImGui::SliderFloat("Rotation Speed (radian / per second)", &rotationSpeed, -2.0f, 2.0f);
+        ImGui::SliderFloat("Color Speed" , &colorSpeed , 0.0f , 10.0f);
+        ImGui::SliderFloat("Radius" , &radius , 0.0f , 0.75f);
 
         //ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
         //ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
@@ -249,13 +254,13 @@ int main() {
         float rotationInRadians = ( elapsed_seconds.count() * rotationSpeed * M_PI );
         startTime = time;
         rotation += rotationInRadians * 180.0f / M_PI;
-            
-        float anotherTime = glfwGetTime();
-        float greenValue = abs(sin(anotherTime/2));
-        float redValue = abs(sin(anotherTime/3));
-        float blueValue = abs(sin(anotherTime/5));
+        colorTime += elapsed_seconds.count() * colorSpeed;
         
-        loadVertexArrayObjectForNGon(vertexCnt , ColorData(redValue, greenValue, blueValue) , rotation);
+        float greenValue = abs(sin(colorTime /2));
+        float redValue = abs(sin(colorTime /3));
+        float blueValue = abs(sin(colorTime /5));
+        
+        loadVertexArrayObjectForNGon(vertexCnt , radius , ColorData(redValue, greenValue, blueValue) , rotation);
         
         int vertexColorLocation = glGetUniformLocation(shaderProgram , "color");
         glUniform4f(vertexColorLocation , redValue , greenValue , blueValue , 1.0f);
